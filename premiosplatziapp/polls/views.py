@@ -1,9 +1,13 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 
+from .models import Question
 
 def index(request):
-    return HttpResponse("Estás en la pagina principal de Premios Platzi App")
+    latest_question_list = Question.objects.all()
+    return render(request, "polls/index.html", {
+        "latest_question_list":latest_question_list
+    })
 
 
 def detail(request, question_id):
